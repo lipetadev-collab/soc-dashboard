@@ -1,0 +1,2 @@
+[console_scripts]
+soc-dashboard = soc_dashboard.main:run

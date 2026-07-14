@@ -1,0 +1,72 @@
+Metadata-Version: 2.4
+Name: soc-dashboard
+Version: 0.1.0
+Summary: ASCII Threat Intelligence and SOC dashboard for terminal environments.
+Author: SOC Dashboard
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: textual>=0.72.0
+Requires-Dist: rich>=13.7.0
+Requires-Dist: psutil>=6.0.0
+Requires-Dist: requests>=2.32.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3.0; extra == "dev"
+
+# Threat Intelligence & SOC Dashboard (ASCII)
+
+Professional terminal-based SOC and threat intelligence dashboard built with Python and Textual.
+
+## Features
+
+- Multi-tab SOC workstation interface in terminal (ASCII/Unicode).
+- Live system health, security alerts, threat intel, network activity, process monitor, and incident timeline.
+- MITRE ATT&CK mapping and IOC lookup.
+- Filter/search controls, keyboard navigation, pause mode, and configurable refresh interval.
+- Export support: JSON, CSV, TXT, HTML, Markdown.
+- Modular architecture for detection, parsing, IOC storage, alerts, analytics, and plugins.
+
+## Quick Start
+
+```bash
+python -m pip install -e .
+soc-dashboard
+# or: python -m soc_dashboard
+```
+
+## Keyboard Shortcuts
+
+- `q`: Quit
+- `p`: Pause/Resume auto-refresh
+- `r`: Manual refresh
+- `f`: Focus filter input
+- `e`: Export snapshot
+- `x`: Cycle export format (JSON/CSV/TXT/HTML/MD)
+- `s`: Cycle alert sorting mode
+- `t`: Toggle theme
+- `1-9`: Switch tabs
+
+## Architecture
+
+- `ui`: Textual application and widgets.
+- `engine`: Event generation, detections, threat intelligence, network and process monitors.
+- `models`: Strongly typed dataclasses for all dashboard entities.
+- `exporter`: Multi-format data exporter.
+- `config`: Config manager with environment overrides.
+- `plugins`: Plugin interface for extending detections and feeds.
+
+## Module Coverage
+
+- **SOC Overview**: CPU, RAM, Disk, network throughput, users, sessions, services, uptime.
+- **Security Alerts**: timestamp/severity/source/destination/description with color-coded levels.
+- **Threat Intelligence**: IOC feeds, reputation score, ASN, geolocation fields, and last observed.
+- **Network Monitoring**: traffic counters, active connections, ports/services, ASCII topology graph.
+- **Threat Map**: textual distribution of attack origins and attack type trends.
+- **IOC Lookup**: interactive IOC search via lookup input.
+- **MITRE ATT&CK**: active/observed mapping to ATT&CK techniques.
+- **Log Viewer**: multi-source simulated log stream with filtering and auto-scroll.
+- **Process Monitor**: PID/user/cpu/memory/ppid/executable/network/suspicious indicators.
+- **Incident Timeline & Analytics**: chronological incidents plus bar-style analytics.
+
+## Notes
+
+This project includes simulated security telemetry out-of-the-box for demos and training. Replace generators in the engine modules with real collectors (Zeek, Suricata, Syslog, Windows Events, Wazuh, Falco, SIEM APIs) for production data sources.
